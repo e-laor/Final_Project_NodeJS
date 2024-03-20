@@ -1,4 +1,4 @@
-// Developers:  Eden Laor - 208939629, Yarin Yahav - 
+// Developers:  Eden Laor - 208939629, Yarin Yahav - 207952516
 
 
 const express = require('express');
@@ -21,7 +21,8 @@ const developers = [
 ];
 
 // GET request to get developers' information
-router.get('/', (req, res) => {
+router.get('/', (req, res) =>
+{
   res.json(developers);
 });
 

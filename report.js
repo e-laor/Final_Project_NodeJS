@@ -1,4 +1,4 @@
-// Developers:  Eden Laor - 208939629, Yarin Yahav - 
+// Developers:  Eden Laor - 208939629, Yarin Yahav - 207952516
 
 
 const express = require('express');
@@ -6,15 +6,18 @@ const router = express.Router();
 const CalorieItem = require('./models/CalorieItem');
 
 // GET request to get detailed report
-router.get('/', async (req, res) => {
+router.get('/', async (req, res) =>
+{
   const { user_id, month, year } = req.query;
 
   // Check if all required parameters are provided
-  if (!user_id || !month || !year) {
+  if (!user_id || !month || !year)
+  {
     return res.status(400).json({ error: "User ID, month, and year are required" });
   }
 
-  try {
+  try
+  {
     // Find all calorie items for the specified user, month, and year
     const calorieItems = await CalorieItem.find({
       user_id: parseInt(user_id),
@@ -31,8 +34,10 @@ router.get('/', async (req, res) => {
     };
 
     // Populate the report with the fetched calorie items
-    calorieItems.forEach(item => {
-      switch (item.category) {
+    calorieItems.forEach(item =>
+    {
+      switch (item.category)
+      {
         case "breakfast":
           report.breakfast.push({
             day: item.day,
@@ -67,7 +72,8 @@ router.get('/', async (req, res) => {
     });
 
     res.json(report);
-  } catch (error) {
+  } catch (error)
+  {
     console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
