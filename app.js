@@ -25,11 +25,11 @@ app.get('/', (req, res) =>
 {
     const htmlContent = `
       <h3>Welcome to our final Final Project in NodeJS</h3>
-      <p>to use the API, use:</p>
+      <p>to use the API, use the following in the <strong>URL</strong>:</p>
       <ul>
-        <li>/addcalories - (POST)</li>
-        <li>/report?user_id=INSERT_USER_ID&year=INSERT_YEAR&month=INSERT_MONTH - (GET)</li>
-        <li>/about - (GET)</li>
+        <li>/addcalories</li>
+        <li>/report?<strong>user_id</strong>=XXX&<strong>year</strong>=XXXX&<strong>month</strong>=XX</li>
+        <li>/about</li>
       </ul>
     `;
 
