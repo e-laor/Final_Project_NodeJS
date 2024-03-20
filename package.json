@@ -1,0 +1,11 @@
+{
+  "name": "final_project_nodejs",
+  "version": "1.0.0",
+  "description": "Asynchronous Server Side Course Final Project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eden Laor",
+  "license": "ISC"
+}
