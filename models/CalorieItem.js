@@ -1,7 +1,7 @@
 // Developers:  Eden Laor - 208939629, Yarin Yahav - 207952516
-
-
 // models/CalorieItem.js
+
+
 const mongoose = require('mongoose');
 
 

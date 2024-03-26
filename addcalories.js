@@ -1,6 +1,3 @@
-// Developers:  Eden Laor - 208939629, Yarin Yahav - 207952516
-
-
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
@@ -17,10 +14,20 @@ router.post('/', async (req, res) =>
     const { user_id, year, month, day, description, category, amount } = req.body;
 
     // Check if all required parameters are provided
-    if (!user_id || !year || !month || !day || !description || !category || !amount)
-    {
-        return res.status(400).json({ error: "All parameters are required" });
+    if (!user_id || !description || !category || !amount) {
+        return res.status(400).json({ error: "User ID, description, category, and amount are required" });
     }
+
+    // Check if date was provided or not
+    if ((year && !month) || (year && !day) || (month && !year) || (month && !day) || (day && !year) || (day && !month)) {
+        return res.status(400).json({ error: "Can't provide 'half' date. Please either provide full date (day, month and year) or none to use today's date." });
+    }
+
+    // Set default values for year, month, and day if not provided
+    const currentDate = new Date();
+    const currentYear = year || currentDate.getFullYear();
+    const currentMonth = month || currentDate.getMonth() + 1;
+    const currentDay = day || currentDate.getDate();
 
     try
     {
@@ -35,9 +42,9 @@ router.post('/', async (req, res) =>
         // Create a new calorieItem object (based on the model)
         const newCalorieItem = new calorieItem({
             user_id: parseInt(user_id),
-            year: parseInt(year),
-            month: parseInt(month),
-            day: parseInt(day),
+            year: parseInt(currentYear),
+            month: parseInt(currentMonth),
+            day: parseInt(currentDay),
             description,
             category,
             amount: parseInt(amount)

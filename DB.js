@@ -1,5 +1,5 @@
 // Developers:  Eden Laor - 208939629, Yarin Yahav - 207952516
-
+// DB.js
 
 const mongoose = require('mongoose');
 
@@ -12,7 +12,7 @@ const connectDB = async () =>
   {
     await mongoose.connect(uri);
     console.log('MongoDB connected successfully');
-  } catch (error)
+  } catch (error) // any error that occured while attempting to connect to the database
   {
     console.error('MongoDB connection error:', error);
   }
