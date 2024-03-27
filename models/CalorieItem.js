@@ -1,12 +1,9 @@
-// Developers:  Eden Laor - 208939629, Yarin Yahav - 207952516
-// models/CalorieItem.js
-
-
 const mongoose = require('mongoose');
 
-
-// the schema for an item to add using addCalories
 const calorieItemSchema = new mongoose.Schema({
+    id: {
+        type: Number
+    },
     user_id: {
         type: Number,
         required: true
@@ -35,6 +32,21 @@ const calorieItemSchema = new mongoose.Schema({
     amount: {
         type: Number,
         required: true
+    }
+});
+
+// Set up middleware to generate the 'id' field
+calorieItemSchema.pre('save', async function (next)
+{
+    const doc = this;
+    try
+    {
+        const count = await mongoose.model('CalorieItem').countDocuments();
+        doc.id = count + 1; // Increment the 'id' for each new document
+        next();
+    } catch (err)
+    {
+        next(err);
     }
 });
 
